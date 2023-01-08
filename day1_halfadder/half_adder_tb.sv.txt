@@ -1,0 +1,50 @@
+// Code your testbench here
+// or browse Examples
+module half_adder_tb ();
+
+  logic a_i;
+  logic b_i;
+  logic sum_tb;
+  logic carry_tb;
+  int  sum_err_cnt = 0;
+  int  carry_err_cnt = 0;
+
+  // Instantiate the RTL
+  half_adder i_half_adder (.a_i(a_i),
+                           .b_i(b_i),
+                           .sum_o(sum_tb),
+                           .carry_o(carry_tb));
+
+  // Drive stimulus  
+  initial begin
+    #1;
+    for (int i = 0; i < 100; i++) begin
+      a_i   = $urandom;
+      b_i   = $urandom;
+      
+      #1;
+      
+      if(sum_tb != (a_i ^ b_i ) )begin
+        sum_err_cnt = sum_err_cnt +1;
+      end
+      
+      if(carry_tb != ((a_i & b_i) )begin
+        carry_err_cnt = carry_err_cnt +1;
+      end
+      #5;
+    end
+    
+    if((carry_err_cnt != 0) || (sum_err_cnt !=0))begin
+      $error("FAIL");
+    end
+    else begin
+      $display("PASS");
+    end
+  end
+  
+  initial begin
+    $dumpfile("half_adder.vcd");
+    $dumpvars(0, half_adder_tb);
+  end
+
+endmodule
