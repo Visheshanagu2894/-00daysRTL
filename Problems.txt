@@ -1,7 +1,10 @@
 1. Half adder
 2. Full adder
-3. N bit Adder
-4. N bit counter
-5. Even COunter
-6. Odd Counter
+3. Sync DFF
+4. ASYNC DFF
+5. 
+6. 
 7. 
+8. 
+9.
+10. 
