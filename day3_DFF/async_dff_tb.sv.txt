@@ -1,0 +1,55 @@
+// Code your testbench here
+// or browse Examples
+module dff_tb();
+  
+logic clk_i;
+logic reset_n_i;
+logic d_i;
+logic q_o;
+localparam CLK_PERIOD = 5;
+time delay;
+  
+
+// Generate clk//
+  
+  always begin
+    clk_i = 1'b1;
+    #(CLK_PERIOD);
+    clk_i = 1'b0;
+    #(CLK_PERIOD);
+  end
+  
+  
+  async_dff async_dff_i(.*);
+  
+  initial begin
+    reset_n_i = 1'b1;
+    for(int i=0;i<10;i++) begin
+      
+      d_i = $random;
+      @(posedge clk_i);
+      if(i==5)begin 
+        reset_n_i = 1'b0;
+      	#2ns;
+        reset_n_i = 1'b1;
+      end
+      assert(randomize(delay) with {delay > 0 ; delay < 10;});
+      #(delay);
+      
+    end
+  	
+    $finish();
+    
+  
+  
+  end
+  
+  
+  // Dump VCD
+  initial begin
+    $dumpfile("dff_tb.vcd");
+    $dumpvars(0, dff_tb);
+  end
+  
+
+endmodule
