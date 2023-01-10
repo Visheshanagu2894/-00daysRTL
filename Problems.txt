@@ -2,9 +2,9 @@
 2. Full adder
 3. Sync DFF
 4. ASYNC DFF
-5. 
-6. 
-7. 
+5. TFF
+6. 8x1 MUX
+7. 1x4 DEMUX
 8. 
 9.
 10. 
