@@ -1,0 +1,25 @@
+// Code your testbench here
+// or browse Examples
+module octal_bin_encoder_tb();
+  logic [7:0] in;
+  logic [2:0] out;
+  int delay;
+  
+  octal_bin_encoder i_octal_bin_encoder(.*);
+  
+  initial begin
+    for(int i=0; i<20;i++) begin
+      assert(randomize(in) with { $countones(in) == 1; });
+      assert(randomize(delay)with { delay < 20;delay > 0; });
+      #(delay);
+    end
+    
+  end
+   
+  initial begin
+    $dumpfile("octal_bin_encoder_tb.vcd");
+    $dumpvars(0, octal_bin_encoder_tb);
+  end
+  
+  
+endmodule

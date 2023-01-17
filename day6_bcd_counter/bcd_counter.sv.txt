@@ -1,0 +1,22 @@
+// Code your design here
+module bcd_counter(input logic clk_i,
+                   input logic reset_n_i,
+                   output logic [3:0] bcd_count_o
+                  );
+  
+  always_ff @ (posedge clk_i)begin
+    if(!reset_n_i)begin
+      bcd_count_o <= 4'b0000;
+    end
+    else begin
+      if(bcd_count_o == 4'b1001)begin
+        bcd_count_o <= 4'b0000;
+      end
+      else begin
+        bcd_count_o <= bcd_count_o + 1;
+      end
+    end
+  end
+  
+  
+endmodule

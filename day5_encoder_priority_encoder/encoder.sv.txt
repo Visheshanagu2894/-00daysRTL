@@ -1,0 +1,15 @@
+// Code your design here
+module octal_bin_encoder(input logic [7:0] in,
+                         output logic [2:0] out
+                        );
+  logic x;
+  logic y;
+  logic z;
+  
+  //derived from truth table
+  assign x =  in[4] | in[5] | in[6] | in[7] ;
+  assign y =  in[2] | in[3] | in[6] | in[7] ;
+  assign z =  in[1] | in[3] | in[5] | in[7] ;
+  
+  assign out = {x,y,z};
+endmodule
