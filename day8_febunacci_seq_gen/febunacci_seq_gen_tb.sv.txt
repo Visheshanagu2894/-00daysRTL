@@ -1,0 +1,44 @@
+// Code your testbench here
+// or browse Examples
+module febunacci_seq_generator_tb( );
+  
+  logic clk;
+  logic reset;
+  logic [31:0] seq_o;
+  
+  localparam CLK_PERIOD = 5;
+  
+   always begin
+    clk = 1'b1;
+    #(CLK_PERIOD);
+    clk = 1'b0;
+    #(CLK_PERIOD);
+  end
+  
+  
+  febunacci_seq_generator i_febunacci_seq_generator(.*);
+  
+  
+  initial begin
+    reset = 1'b1;
+    @(posedge clk);
+    reset = 1'b0;
+    #(CLK_PERIOD);
+    reset = 1'b1;
+    #(CLK_PERIOD * 100);
+    
+    
+    $finish;
+  end
+  
+  
+  initial begin
+    $dumpfile("febunacci_seq_generator_tb.vcd");
+    $dumpvars(0, febunacci_seq_generator_tb);
+  end
+  
+  
+  
+  
+  
+endmodule
